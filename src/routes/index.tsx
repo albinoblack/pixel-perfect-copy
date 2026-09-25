@@ -581,7 +581,7 @@ function Footer() {
   return (
     <footer className="border-t border-border bg-background px-4 py-10 pb-24 md:pb-10">
       <div className="mx-auto flex max-w-6xl flex-col gap-6 sm:flex-row sm:items-center sm:justify-between">
-        <Logo />
+        <Logo size="lg" />
         <div className="text-sm text-muted-foreground">
           <p>{ENDERECO}</p>
           <p>Espetinho 19h–23h (seg a sex) • Lanchonete 08h–16h (seg a sáb)</p>
