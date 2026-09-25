@@ -50,18 +50,21 @@ const MENU = [
   { label: "Localização", href: "#localizacao" },
 ];
 
-function Logo({ className = "" }: { className?: string }) {
+function Logo({ className = "", size = "sm" }: { className?: string; size?: "sm" | "lg" }) {
   return (
-    <a href="#top" className={`flex items-center gap-2 ${className}`} aria-label="Pit Stop">
-      <span className="grid size-9 place-items-center rounded-sm bg-primary font-display text-lg font-bold text-primary-foreground">
-        🔥
-      </span>
-      <span className="font-display text-xl leading-none font-bold tracking-tight">
-        PIT <span className="text-primary">STOP</span>
-        <span className="block text-[0.55rem] font-medium tracking-[0.22em] text-muted-foreground">
-          ESPETINHO E LANCHONETE
-        </span>
-      </span>
+    <a
+      href="#top"
+      className={`inline-flex items-center ${className}`}
+      aria-label="Pit Stop Espetinho e Lanchonete"
+    >
+      <img
+        src={logoAsset.url}
+        alt="Pit Stop Espetinho e Lanchonete"
+        width={156}
+        height={152}
+        className={size === "lg" ? "h-16 w-auto" : "h-11 w-auto"}
+        draggable={false}
+      />
     </a>
   );
 }
