@@ -197,7 +197,7 @@ function Horarios({ id }: { id?: string }) {
     { titulo: "Lanchonete", hora: "08h às 16h", dias: "Segunda a sábado", emoji: "🍔" },
   ];
   return (
-    <section id={id} className="mx-auto -mt-6 max-w-6xl px-4">
+    <section id={id} className="relative z-10 mx-auto -mt-6 max-w-6xl px-4">
       <div className="grid gap-3 sm:grid-cols-2">
         {cards.map((c) => (
           <div
