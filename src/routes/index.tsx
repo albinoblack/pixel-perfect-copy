@@ -65,7 +65,11 @@ function Logo({ className = "", size = "sm" }: { className?: string; size?: "sm"
         alt="Pit Stop Espetinho e Lanchonete"
         width={156}
         height={152}
-        className={size === "lg" ? "h-20 w-20 rounded-full object-contain" : "h-14 w-14 rounded-full object-contain"}
+        className={
+          size === "lg"
+            ? "h-20 w-20 rounded-full object-contain"
+            : "h-14 w-14 rounded-full object-contain"
+        }
         draggable={false}
       />
     </a>
@@ -301,7 +305,8 @@ function Cardapio() {
         ))}
       </div>
       <p className="mt-4 text-xs text-muted-foreground">
-        Consulte o cardápio atualizado pelo Instagram. Itens e preços devem ser confirmados com o estabelecimento.
+        Consulte o cardápio atualizado pelo Instagram. Itens e preços devem ser confirmados com o
+        estabelecimento.
       </p>
     </section>
   );
@@ -553,9 +558,7 @@ function CtaFinal() {
           <h2 className="text-3xl font-bold sm:text-5xl">
             Bateu a <span className="text-primary">fome?</span>
           </h2>
-          <p className="mt-3 text-lg text-foreground/80">
-            Então já sabe onde fazer seu Pit Stop.
-          </p>
+          <p className="mt-3 text-lg text-foreground/80">Então já sabe onde fazer seu Pit Stop.</p>
           <div className="mt-6 flex flex-wrap gap-3">
             <a href="#cardapio" className="btn-ghost">
               Ver cardápio
