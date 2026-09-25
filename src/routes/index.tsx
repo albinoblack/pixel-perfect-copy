@@ -7,6 +7,7 @@ import lanchoneteFoto from "@/assets/lanchonete.jpg";
 import ambienteCerveja from "@/assets/ambiente-cerveja.jpg";
 import galeriaGrelha from "@/assets/galeria-grelha.jpg";
 import porcoesFoto from "@/assets/porcoes.jpg";
+import logoAsset from "@/assets/logo-pit-stop.png.asset.json";
 
 export const Route = createFileRoute("/")({
   component: Index,
