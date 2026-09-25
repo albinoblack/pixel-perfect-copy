@@ -7,7 +7,7 @@ import lanchoneteFoto from "@/assets/lanchonete.jpg";
 import ambienteCerveja from "@/assets/ambiente-cerveja.jpg";
 import galeriaGrelha from "@/assets/galeria-grelha.jpg";
 import porcoesFoto from "@/assets/porcoes.jpg";
-import logoAsset from "@/assets/logo-pit-stop.png.asset.json";
+import logoPitStop from "@/assets/logo-pit-stop.png";
 
 export const Route = createFileRoute("/")({
   component: Index,
@@ -19,13 +19,15 @@ export const Route = createFileRoute("/")({
 const ENDERECO = "Av. José Cobra, 82";
 const INSTAGRAM = "https://www.instagram.com/pitstoppqindustrial";
 const MAPS = `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(
-  "Av. José Cobra, 82",
+  "Av. José Cobra, 82, Parque Industrial, São José dos Campos, SP",
 )}`;
-// PLACEHOLDER: substituir pelo número real do WhatsApp (formato 55 + DDD + número)
-const WHATSAPP = "5519000000000";
-const WHATS_LINK = `https://wa.me/${WHATSAPP}?text=${encodeURIComponent(
-  "Olá! Quero fazer um pedido no Pit Stop.",
-)}`;
+// Cadastre o número oficial (55 + DDD + número) para habilitar pedidos pelo WhatsApp.
+const WHATSAPP = "5512981266855";
+const WHATS_LINK = WHATSAPP
+  ? `https://wa.me/${WHATSAPP}?text=${encodeURIComponent("Olá! Quero fazer um pedido no Pit Stop.")}`
+  : INSTAGRAM;
+const CONTATO_LABEL = WHATSAPP ? "Chamar no WhatsApp" : "Chamar no Instagram";
+const PEDIDO_LABEL = WHATSAPP ? "Pedir no WhatsApp" : "Falar com o Pit Stop";
 
 // Bloco de jogo: mude para true e preencha quando tiver jogo
 const JOGO = {
@@ -59,11 +61,11 @@ function Logo({ className = "", size = "sm" }: { className?: string; size?: "sm"
       aria-label="Pit Stop Espetinho e Lanchonete"
     >
       <img
-        src={logoAsset.url}
+        src={logoPitStop}
         alt="Pit Stop Espetinho e Lanchonete"
         width={156}
         height={152}
-        className={size === "lg" ? "h-20 w-auto" : "h-14 w-auto"}
+        className={size === "lg" ? "h-20 w-20 rounded-full object-contain" : "h-14 w-14 rounded-full object-contain"}
         draggable={false}
       />
     </a>
@@ -100,7 +102,7 @@ function Header() {
             </a>
           ))}
           <a href={WHATS_LINK} target="_blank" rel="noopener" className="btn-primary text-sm">
-            Pedir no WhatsApp
+            {PEDIDO_LABEL}
           </a>
         </nav>
         <button
@@ -137,7 +139,7 @@ function Header() {
             rel="noopener"
             className="btn-primary mt-4 w-full text-sm"
           >
-            Pedir no WhatsApp
+            {PEDIDO_LABEL}
           </a>
         </nav>
       )}
@@ -171,7 +173,7 @@ function Hero() {
             Ver cardápio
           </a>
           <a href={WHATS_LINK} target="_blank" rel="noopener" className="btn-ghost">
-            Chamar no WhatsApp
+            {CONTATO_LABEL}
           </a>
         </div>
         <ul className="mt-7 flex flex-wrap gap-x-5 gap-y-2 text-sm text-foreground/80">
@@ -247,7 +249,7 @@ function ItemCard({ item }: { item: Item }) {
         <p className="mt-1 text-sm text-muted-foreground">{item.desc}</p>
         <div className="mt-4 flex items-center justify-between gap-3">
           <span className="font-display text-sm tracking-wide text-accent uppercase">
-            Preço no WhatsApp
+            Preço sob consulta
           </span>
           <a
             href={WHATS_LINK}
@@ -299,15 +301,14 @@ function Cardapio() {
         ))}
       </div>
       <p className="mt-4 text-xs text-muted-foreground">
-        Itens e preços são confirmados no WhatsApp — o cardápio completo entra aqui assim que
-        enviado.
+        Consulte o cardápio atualizado pelo Instagram. Itens e preços devem ser confirmados com o estabelecimento.
       </p>
     </section>
   );
 }
 
 function Espetinhos() {
-  const espetos = ["Boi", "Frango", "Linguiça", "Coração", "Queijo coalho", "Misto"];
+  const espetos = ["Espetinhos na brasa", "Acompanhamentos"];
   return (
     <section id="espetinhos" className="bg-surface py-12">
       <div className="mx-auto max-w-6xl px-4">
@@ -385,17 +386,17 @@ function Promocoes() {
     {
       tag: "Promo",
       titulo: "Promoção da semana",
-      texto: "Combo em destaque toda semana — confirme a da semana no WhatsApp.",
+      texto: "Confira as novidades e ofertas atuais no Instagram.",
     },
     {
       tag: "Futebol",
       titulo: "Jogo na TV",
-      texto: "Churrasco, cerveja gelada e jogo na TV nos dias de partida.",
+      texto: "Confira a programação de jogos no Instagram.",
     },
     {
       tag: "Combo",
       titulo: "Espetinho + bebida",
-      texto: "Combos montados na hora pra levar ou comer aqui.",
+      texto: "Consulte os combos disponíveis diretamente com o Pit Stop.",
     },
   ];
   return (
@@ -527,7 +528,7 @@ function Localizacao() {
               Abrir no Google Maps
             </a>
             <a href={WHATS_LINK} target="_blank" rel="noopener" className="btn-primary flex-1">
-              Chamar no WhatsApp
+              {CONTATO_LABEL}
             </a>
           </div>
           <a
@@ -560,7 +561,7 @@ function CtaFinal() {
               Ver cardápio
             </a>
             <a href={WHATS_LINK} target="_blank" rel="noopener" className="btn-primary">
-              Chamar no WhatsApp
+              {CONTATO_LABEL}
             </a>
           </div>
         </div>
@@ -604,10 +605,12 @@ function WhatsFloat() {
         href={WHATS_LINK}
         target="_blank"
         rel="noopener"
-        className="fixed right-5 bottom-5 z-50 hidden size-14 place-items-center rounded-full bg-whats text-2xl shadow-card md:grid"
-        aria-label="Chamar no WhatsApp"
+        className="fixed right-5 bottom-5 z-50 hidden size-14 place-items-center rounded-full bg-whats text-white shadow-card md:grid"
+        aria-label={CONTATO_LABEL}
       >
-        💬
+        <svg viewBox="0 0 32 32" fill="currentColor" aria-hidden="true" className="size-8">
+          <path d="M16 .8A15.1 15.1 0 0 0 2.9 23.5L.8 31.2l7.9-2.1A15.2 15.2 0 1 0 16 .8Zm0 27.6a12.3 12.3 0 0 1-6.3-1.7l-.5-.3-4.7 1.2 1.3-4.6-.3-.5A12.4 12.4 0 1 1 16 28.4Zm6.8-9.3c-.4-.2-2.2-1.1-2.5-1.2-.3-.1-.6-.2-.8.2-.2.3-.9 1.2-1.1 1.4-.2.2-.4.3-.8.1-.4-.2-1.6-.6-3-1.9-1.1-1-1.9-2.3-2.1-2.7-.2-.4 0-.6.2-.8l.6-.7c.2-.2.3-.4.4-.6.1-.2 0-.5 0-.7l-1.2-2.8c-.3-.7-.6-.6-.8-.6h-.7c-.3 0-.7.1-1 .5-.3.4-1.3 1.2-1.3 3s1.3 3.5 1.5 3.7c.2.2 2.6 4 6.3 5.6.9.4 1.6.6 2.2.7.9.3 1.7.2 2.3.1.7-.1 2.2-.9 2.5-1.8.3-.9.3-1.7.2-1.8-.1-.2-.3-.3-.7-.5Z" />
+        </svg>
       </a>
       <a
         href={WHATS_LINK}
@@ -615,7 +618,7 @@ function WhatsFloat() {
         rel="noopener"
         className="btn-primary fixed inset-x-0 bottom-0 z-50 rounded-none py-4 md:hidden"
       >
-        🔥 Pedir no WhatsApp
+        🔥 {PEDIDO_LABEL}
       </a>
     </>
   );
