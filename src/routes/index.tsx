@@ -7,6 +7,7 @@ import lanchoneteFoto from "@/assets/lanchonete.jpg";
 import ambienteCerveja from "@/assets/ambiente-cerveja.jpg";
 import galeriaGrelha from "@/assets/galeria-grelha.jpg";
 import porcoesFoto from "@/assets/porcoes.jpg";
+import logoAsset from "@/assets/logo-pit-stop.png.asset.json";
 
 export const Route = createFileRoute("/")({
   component: Index,
@@ -50,18 +51,21 @@ const MENU = [
   { label: "Localização", href: "#localizacao" },
 ];
 
-function Logo({ className = "" }: { className?: string }) {
+function Logo({ className = "", size = "sm" }: { className?: string; size?: "sm" | "lg" }) {
   return (
-    <a href="#top" className={`flex items-center gap-2 ${className}`} aria-label="Pit Stop">
-      <span className="grid size-9 place-items-center rounded-sm bg-primary font-display text-lg font-bold text-primary-foreground">
-        🔥
-      </span>
-      <span className="font-display text-xl leading-none font-bold tracking-tight">
-        PIT <span className="text-primary">STOP</span>
-        <span className="block text-[0.55rem] font-medium tracking-[0.22em] text-muted-foreground">
-          ESPETINHO E LANCHONETE
-        </span>
-      </span>
+    <a
+      href="#top"
+      className={`inline-flex items-center ${className}`}
+      aria-label="Pit Stop Espetinho e Lanchonete"
+    >
+      <img
+        src={logoAsset.url}
+        alt="Pit Stop Espetinho e Lanchonete"
+        width={156}
+        height={152}
+        className={size === "lg" ? "h-20 w-auto" : "h-14 w-auto"}
+        draggable={false}
+      />
     </a>
   );
 }
@@ -577,7 +581,7 @@ function Footer() {
   return (
     <footer className="border-t border-border bg-background px-4 py-10 pb-24 md:pb-10">
       <div className="mx-auto flex max-w-6xl flex-col gap-6 sm:flex-row sm:items-center sm:justify-between">
-        <Logo />
+        <Logo size="lg" />
         <div className="text-sm text-muted-foreground">
           <p>{ENDERECO}</p>
           <p>Espetinho 19h–23h (seg a sex) • Lanchonete 08h–16h (seg a sáb)</p>
