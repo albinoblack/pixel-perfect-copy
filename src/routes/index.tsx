@@ -63,7 +63,7 @@ function Logo({ className = "", size = "sm" }: { className?: string; size?: "sm"
         alt="Pit Stop Espetinho e Lanchonete"
         width={156}
         height={152}
-        className={size === "lg" ? "h-16 w-auto" : "h-11 w-auto"}
+        className={size === "lg" ? "h-20 w-auto" : "h-14 w-auto"}
         draggable={false}
       />
     </a>
